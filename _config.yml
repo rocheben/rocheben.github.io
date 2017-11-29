@@ -14,9 +14,9 @@ keep_files:
 
 
 # Site settings
-title: Airspace
-subtitle: "A free HTML5 agency template"
-url: "http://rocheben.github.io" # the base hostname & protocol for your site
+title: "Benjamin Roche"
+subtitle: "Ecology an evolution for health"
+url: "https://rocheben.github.io" # the base hostname & protocol for your site
 # baseurl: "/the/subpath/of/your/site" # Set this value to "" if you want your site to be root
 baseurl: ""
 cover: "/assets/cover.png"
