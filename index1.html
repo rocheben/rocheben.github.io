@@ -64,9 +64,15 @@
         function setBounds() {
         }
         function pop_worldadministrativeboundaries_0(feature, layer) {
+            var value = feature.properties['iso3'];
+            var frame2 = parent.frames['frame2'];
+            if (frame2) {
+                frame2.document.getElementById('displayValue').innerText = value;
+            }
+            frame2.location.reload();
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['iso3'] !== null ? autolinker.link(feature.properties['iso3'].toLocaleString()) : '') + '</td>\
+                        <td colspan="2">' + value !== null ? autolinker.link(value.toLocaleString()) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -75,12 +81,6 @@
             var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
             popup.setContent(updatedContent);
             
-            var value = feature.properties['iso3'];
-            var frame2 = parent.frames['frame2'];
-            if (frame2) {
-                frame2.document.getElementById('displayValue').innerText = value;
-            }
-
         }
 
         function style_worldadministrativeboundaries_0_0() {
