@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -21,7 +21,7 @@
 </head>
 <body>
 <div id="map"></div>
-<div id="valueDisplay"></div> <!-- Nouvel élément pour afficher la variable value -->
+<input type="text" id="valueDisplay" readonly> <!-- Champ texte pour afficher la valeur -->
 <script src="js/qgis2web_expressions.js"></script>
 <script src="js/leaflet.js"></script>
 <script src="js/leaflet.rotatedMarker.js"></script>
@@ -75,8 +75,8 @@
         var content = popup.getContent();
         var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
         popup.setContent(updatedContent);
-        // Mettre à jour le contenu de l'élément valueDisplay
-        document.getElementById('valueDisplay').innerText = 'Value: ' + value;
+        // Mettre à jour la valeur du champ texte
+        document.getElementById('valueDisplay').value = value;
     }
     function style_worldadministrativeboundaries_0_0() {
         return {
