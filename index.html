@@ -74,6 +74,9 @@
             var content = popup.getContent();
             var updatedContent = removeEmptyRowsFromPopupContent(content, feature);
             popup.setContent(updatedContent);
+            var mon_cadre_src="temp.txt";
+   			document.write(feature.properties['iso3']);
+
         }
 
         function style_worldadministrativeboundaries_0_0() {
