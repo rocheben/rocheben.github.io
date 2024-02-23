@@ -109,7 +109,11 @@
         dataVar: 'json_worldadministrativeboundaries_0',
         layerName: 'layer_worldadministrativeboundaries_0',
         pane: 'pane_worldadministrativeboundaries_0',
-        onEachFeature: pop_worldadministrativeboundaries_0,
+        onEachFeature: function(feature, layer) {
+            layer.on('click', function() {
+                pop_worldadministrativeboundaries_0(feature, layer);
+            });
+        },
         style: style_worldadministrativeboundaries_0_0,
     });
     bounds_group.addLayer(layer_worldadministrativeboundaries_0);
