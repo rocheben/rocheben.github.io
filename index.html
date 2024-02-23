@@ -65,11 +65,6 @@
     function setBounds() {}
     function pop_worldadministrativeboundaries_0(feature, layer) {
         var value = feature.properties['iso3'];
-        var frame2 = parent.frames['frame2'];
-        if (frame2) {
-            frame2.document.getElementById('displayValue').innerText = value;
-            frame2.location.reload();
-        }
         var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (value !== null ? autolinker.link(value.toLocaleString()) : '') + '</td>\
@@ -114,6 +109,3 @@
 </script>
 </body>
 </html>
-```
-
-Dans ce code, j'ai ajouté un nouvel élément `<div id="valueDisplay"></div>` juste après la `<div id="map"></div>`. Ensuite, dans la fonction `pop_worldadministrativeboundaries_0`, j'ai mis à jour le contenu de cet élément avec la valeur de `value`.
