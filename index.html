@@ -121,7 +121,6 @@ Wildlife/Livestock<select name="wildlifelivestockContact" id="wildlifelivestockC
 Note: <input type="text" name="note" id="note">
 <input type="button" id="submit" value="submit">
 </form>
-<input type="text" name="dataSubmit" id="dataSubmit" readonly disabled>
 <script type=text/javascript src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type=text/javascript src="./jquery.serializeObject.min.js"></script>
 
@@ -140,7 +139,7 @@ var $form = $('form#test-form'),
     // do something
     }
   );
-  updateValueDisplay('dataSubmit', 'Submitted successfully');
+  alert("Submitted successfully");
 })
 </script>
 
