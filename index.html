@@ -12,23 +12,37 @@
     <link rel="stylesheet" href="css/fontawesome-all.min.css">
     <style>
         html, body, #map {
-            width: 90%;
-            height: 90%;
-            padding: 100;
-            margin: 1000;
+            width: 80%;
+            height: 80%;
+            padding: 10;
+            margin: 10;
         }
     </style>
     <title></title>
 </head>
 <body>
-<img src="./who.jpeg" width="500" height="300">
+<p><b>Instructions:</b></p>
+<p>(1) Click on the geographical unit.</p>
+<p>(2) Choose the pathogen of interest</p>
+<p>(3) According to your expertise, indicate your estimation (for the geographical unit and the pathogen selected) of pathogen pressure in wildlife, contact between wildlife and humans, pathogen pressure in livestock, contact between livestock and humans, contact between wildlife and livestock and your sul-trust for each estimation</p>
+<p><i>N.B: You are not requested to estimate all variables. You can focus only on the variables you think you have a valuable opinion</i></p>
+
 <div id="map"></div>
+
 <form id="test-form">
 
 Participant ID: <input type="text" name="participantId" id="paramDisplay" readonly>
 
-Unit selected: <input type="text" name="unitSelected" id="iso3Display" readonly> <!-- Champ texte pour afficher la valeur de feature.properties['iso3'] -->
+Unit selected: <input type="text" name="unitSelected" id="iso3Display" readonly>
 <p></p>
+
+Pathogen of interest : <select name="pathogen" id="pathogen">
+    <option value="">Pathogen of interest</option>
+    <option value="AIV">AIV</option>
+    <option value="MERS">Mers-Cov</option>
+    <option value="CCHF">CCHF</option>
+	<option value="WNV">West Nile Virus</option>
+</select>
 
 Wildlife : <select name="wildlifePressure" id="wildlifePressure">
     <option value="">Pathogen pressure in wildlife </option>
@@ -97,7 +111,7 @@ Wildlife/Livestock<select name="wildlifelivestockContact" id="wildlifelivestockC
 Note: <input type="text" name="note" id="note">
 <input type="button" id="submit" value="submit">
 </form>
-<input type="text" name="dataSubmit" id="dataSubmit" readonly>
+<input type="text" name="dataSubmit" id="dataSubmit" readonly disabled>
 <script type=text/javascript src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script type=text/javascript src="./jquery.serializeObject.min.js"></script>
 
@@ -116,8 +130,7 @@ var $form = $('form#test-form'),
     // do something
     }
   );
-  updateValueDisplay('dataSubmit', 'Submitted : '+$paramDisplay);
-  console.log($form.serializeObject())
+  updateValueDisplay('dataSubmit', 'Submitted successfully');
 })
 </script>
 
@@ -183,6 +196,7 @@ var $form = $('form#test-form'),
         popup.setContent(updatedContent);
         // Mettre à jour le contenu de l'élément iso3Display et paramDisplay
         updateValueDisplay('iso3Display', iso3Value);
+		updateValueDisplay('dataSubmit', '');
     }
     function style_worldadministrativeboundaries_0_0() {
         return {
@@ -233,5 +247,10 @@ var paramValue = getUrlParameter('param');
 updateValueDisplay('paramDisplay', paramValue);
 
 </script>
+<p></p>
+For any questions, please e-mail <a href=mail:benjamin.roche@ird.fr>Benjamin Roche</a>
+<center>
+<p><img src="./who.jpeg" width="400" height="200"></p>
+</center>
 </body>
 </html>
