@@ -194,6 +194,12 @@ Note: <input type="text" id="note">
         document.getElementById(elementId).value = value;
     }
 
+function generateUniqueFileName() {
+    var timestamp = new Date().getTime(); // Obtenez le timestamp actuel
+    var randomString = Math.random().toString(36).substring(7); // Générer une chaîne aléatoire
+    return "file_" + timestamp + "_" + randomString + ".txt"; // Concaténer le timestamp et la chaîne aléatoire pour créer un nom de fichier unique
+}
+
 document.getElementById("submit").addEventListener("click", function() {
     // Récupérer les valeurs des champs input
     var participantId = document.getElementById('paramDisplay').value;
@@ -231,7 +237,8 @@ document.getElementById("submit").addEventListener("click", function() {
     // Utiliser l'API File System pour écrire le fichier temporaire
     window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
     window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, function(fs) {
-        fs.root.getFile('input_values.txt', {create: true}, function(fileEntry) {
+    var uniqueFileName = generateUniqueFileName();
+        fs.root.getFile(uniqueFileName, {create: true}, function(fileEntry) {
             fileEntry.createWriter(function(fileWriter) {
                 fileWriter.onwriteend = function(e) {
                     // Télécharger le fichier une fois qu'il est écrit
