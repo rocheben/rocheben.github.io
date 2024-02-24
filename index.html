@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+	<title>WHO/Prezode indictor for human zoonotic exposure </title>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
@@ -20,54 +21,59 @@
     <title></title>
 </head>
 <body>
-Participant ID: <input type="text" id="paramDisplay" readonly> <p></p>
-Unit selected: <input type="text" id="iso3Display" readonly> <!-- Champ texte pour afficher la valeur de feature.properties['iso3'] -->
-
+<img src="./who.jpeg" width="500" height="300">
 <div id="map"></div>
-Wildlife : <select id="wildlifePressure">
+<form id="test-form">
+
+Participant ID: <input type="text" name="participantId" id="paramDisplay" readonly>
+
+Unit selected: <input type="text" name="unitSelected" id="iso3Display" readonly> <!-- Champ texte pour afficher la valeur de feature.properties['iso3'] -->
+<p></p>
+
+Wildlife : <select name="wildlifePressure" id="wildlifePressure">
     <option value="">Pathogen pressure in wildlife </option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
 </select>
-<select id="wildlifePressureTrust">
+<select name="wildlifePressureTrust" id="wildlifePressureTrust">
     <option value="">Self-trust for wildlife pathogen pressure estimation </option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
 </select>
-<select id="wildlifeContact">
+<select name="wildlifeContact" id="wildlifeContact">
     <option value="">Contact with wildlife </option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
 </select>
-<select id="wildlifeContactTrust">
+<select name="wildlifeContactTrust" id="wildlifeContactTrust">
     <option value="">Self-trust for  wildlife contact estimation </option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
 </select>
 <p></p>
-Livestock : <select id="livestockPressure">
+Livestock : <select name="livestockPressure" id="livestockPressure">
     <option value="">Pathogen pressure in livestock </option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
 </select>
-<select id="livestockPressureTrust">
+<select name="livestockPressureTrust" id="livestockPressureTrust">
     <option value="">Self-trust for livestock pathogen pressure estimation </option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
 </select>
-<select id="livestockContact">
+<select name="livestockContact" id="livestockContact">
     <option value="">Contact with livestock </option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
 </select>
-<select id="livestockContactTrust">
+<select name="livestockContactTrust" id="livestockContactTrust">
     <option value="">Self-trust for livestock  contact estimation </option>
     <option value="1">1</option>
     <option value="2">2</option>
@@ -75,21 +81,45 @@ Livestock : <select id="livestockPressure">
 </select>
 <p></p>
 
-Wildlife/Livestock<select id="wildlifelivestockContact">
+Wildlife/Livestock<select name="wildlifelivestockContact" id="wildlifelivestockContact">
     <option value="">Contact between wildlife and livestock </option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
 </select>
-<select id="livestockContactTrust">
+<select name="livestockWildlifeContactTrust" id="livestockWildlifeContactTrust">
     <option value="">Self-trust for wildlife/livestock contact estimation </option>
     <option value="1">1</option>
     <option value="2">2</option>
     <option value="3">3</option>
 </select>
 <p></p>
-Note: <input type="text" id="note">
+Note: <input type="text" name="note" id="note">
 <input type="button" id="submit" value="submit">
+</form>
+<input type="text" name="dataSubmit" id="dataSubmit" readonly>
+<script type=text/javascript src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script type=text/javascript src="./jquery.serializeObject.min.js"></script>
+
+<script>
+
+$('#submit').on('click', function(e) {
+var $form = $('form#test-form'),
+    url = 'https://script.google.com/macros/s/AKfycbxKVaSGvgsTNsonRl1nANIK3dqgDNnZNMYA1WSQWZjKUCLnZdMBz0UQ-NuVeeH8m2JBvA/exec'
+  e.preventDefault();
+  var jqxhr = $.ajax({
+    url: url,
+    method: "GET",
+    dataType: "json",
+    data: $form.serializeObject()
+  }).done(function(){
+    // do something
+    }
+  );
+  updateValueDisplay('dataSubmit', 'Submitted : '+$paramDisplay);
+  console.log($form.serializeObject())
+})
+</script>
 
 <script src="js/qgis2web_expressions.js"></script>
 <script src="js/leaflet.js"></script>
@@ -140,7 +170,7 @@ Note: <input type="text" id="note">
     function setBounds() {}
     function pop_worldadministrativeboundaries_0(feature, layer) {
         var iso3Value = feature.properties['iso3'];
-        var paramValue = getUrlParameter('param');
+
         var popupContent = '<table>\
                     <tr>\
                         <td colspan="2">' + (iso3Value !== null ? autolinker.link(iso3Value.toLocaleString()) : '') + '</td>\
@@ -153,7 +183,6 @@ Note: <input type="text" id="note">
         popup.setContent(updatedContent);
         // Mettre à jour le contenu de l'élément iso3Display et paramDisplay
         updateValueDisplay('iso3Display', iso3Value);
-        updateValueDisplay('paramDisplay', paramValue);
     }
     function style_worldadministrativeboundaries_0_0() {
         return {
@@ -200,72 +229,8 @@ function generateUniqueFileName() {
     return "file_" + timestamp + "_" + randomString + ".txt"; // Concaténer le timestamp et la chaîne aléatoire pour créer un nom de fichier unique
 }
 
-document.getElementById("submit").addEventListener("click", function() {
-    // Récupérer les valeurs des champs input
-    var participantId = document.getElementById('paramDisplay').value;
-    var unitSelected = document.getElementById('iso3Display').value;
-    var wildlifePressure = document.getElementById('wildlifePressure').value;
-    var wildlifePressureTrust = document.getElementById('wildlifePressureTrust').value;
-    var wildlifeContact = document.getElementById('wildlifeContact').value;
-    var wildlifeContactTrust = document.getElementById('wildlifeContactTrust').value;
-    var livestockPressure = document.getElementById('livestockPressure').value;
-    var livestockPressureTrust = document.getElementById('livestockPressureTrust').value;
-    var livestockContact = document.getElementById('livestockContact').value;
-    var livestockContactTrust = document.getElementById('livestockContactTrust').value;
-    var wildlifeLivestockContact = document.getElementById('wildlifelivestockContact').value;
-    var wildlifeLivestockContactTrust = document.getElementById('livestockContactTrust').value;
-    var note = document.getElementById('note').value;
-
-    // Construire le contenu à écrire dans le fichier
-    var content = "Participant ID: " + participantId + "\n" +
-                  "Unit selected: " + unitSelected + "\n" +
-                  "Wildlife Pressure: " + wildlifePressure + "\n" +
-                  "Wildlife Pressure Trust: " + wildlifePressureTrust + "\n" +
-                  "Wildlife Contact: " + wildlifeContact + "\n" +
-                  "Wildlife Contact Trust: " + wildlifeContactTrust + "\n" +
-                  "Livestock Pressure: " + livestockPressure + "\n" +
-                  "Livestock Pressure Trust: " + livestockPressureTrust + "\n" +
-                  "Livestock Contact: " + livestockContact + "\n" +
-                  "Livestock Contact Trust: " + livestockContactTrust + "\n" +
-                  "Wildlife/Livestock Contact: " + wildlifeLivestockContact + "\n" +
-                  "Wildlife/Livestock Contact Trust: " + wildlifeLivestockContactTrust + "\n" +
-                  "Note: " + note;
-
-    // Créer un objet Blob contenant le contenu
-    var blob = new Blob([content], { type: "text/plain;charset=utf-8" });
-
-    // Utiliser l'API File System pour écrire le fichier temporaire
-    window.requestFileSystem = window.requestFileSystem || window.webkitRequestFileSystem;
-    window.requestFileSystem(window.TEMPORARY, 5 * 1024 * 1024, function(fs) {
-    var uniqueFileName = generateUniqueFileName();
-        fs.root.getFile(uniqueFileName, {create: true}, function(fileEntry) {
-            fileEntry.createWriter(function(fileWriter) {
-                fileWriter.onwriteend = function(e) {
-                    // Télécharger le fichier une fois qu'il est écrit
-                    var a = document.createElement("a");
-                    a.href = fileEntry.toURL();
-                    a.download = uniqueFileName;
-                    document.body.appendChild(a);
-                    a.click();
-                };
-
-                fileWriter.onerror = function(e) {
-                    console.log('Erreur lors de l\'écriture du fichier : ' + e.toString());
-                };
-
-                // Écrire le contenu dans le fichier
-                fileWriter.write(blob);
-            }, function(e) {
-                console.log('Erreur lors de la création du writer : ' + e.toString());
-            });
-        }, function(e) {
-            console.log('Erreur lors de la récupération du fichier : ' + e.toString());
-        });
-    }, function(e) {
-        console.log('Erreur lors de la demande de système de fichiers : ' + e.toString());
-    });
-});
-
+var paramValue = getUrlParameter('param');
+updateValueDisplay('paramDisplay', paramValue);
 
 </script>
 </body>
