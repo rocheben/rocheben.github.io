@@ -24,8 +24,8 @@
 <p><b>Instructions (full information note available <a href="https://docs.google.com/document/d/1PXRqBMDUv2CbGUFTAfiIDl5wmKl9lDaM/edit?usp=sharing&ouid=108623248360110600756&rtpof=true&sd=true" target="_blank" >here</a>):</b></p>
 <p>(1) Click on one country at the time.</p>
 <p>(2) Choose the pathogen of interest</p>
-<p>(3) According to your expertise, indicate your estimation (for the geographical unit and the pathogen selected) of pathogen pressure in wildlife, contact between wildlife and humans, pathogen pressure in livestock, contact between livestock and humans, contact between wildlife and livestock and your sul-trust for each estimation</p>
-<p><i>N.B: If you have a relevant estimation to provide on one pathogen in one country, but not for all the variables (e.g., relevant estimation for pathogen pressure in wildlife, but not for the rest of variables), please indicate "I don't know"</i></p>
+<p>(3) According to your expertise, indicate your estimation (for the geographical unit and the pathogen selected) of pathogen pressure in wildlife, contact between wildlife and humans, pathogen pressure in livestock, contact between livestock and humans, contact between wildlife and livestock and your confidence for each estimation</p>
+<p><i>N.B: If you have a relevant estimation to provide on one pathogen in one country, but not for all the variables (e.g., relevant estimation for pathogen pressure in wildlife, but not for the rest of variables), please indicate "Don't know"</i></p>
 
 <div id="map"></div>
 
@@ -33,10 +33,10 @@
 
 <b>Participant ID:</b> <input type="text" name="participantId" id="paramDisplay" readonly>
 
-<b>Unit selected:</b> <input type="text" name="unitSelected" id="iso3Display" readonly>
+<b>Country selected:</b> <input type="text" name="unitSelected" id="iso3Display" readonly>
 <p></p>
 
-<b>Pathogen of interest :</b><p></p><select name="pathogen" required id="pathogen">
+<b>Pathogen of interest :</b><select name="pathogen" required id="pathogen">
     <option value="">Pathogen of interest</option>
     <option value="AIV">AIV</option>
     <option value="MERS">Mers-Cov</option>
@@ -45,105 +45,114 @@
 </select>
 <p></p>
 <b>Wildlife :</b><p></p>
-<i>Level 1</i>: No cases detected currently (may have been detected in the past) or low level of seroprevalence<p></p>
-<i>Level 2</i>: Sporadic detection suggesting a low maintenance of the pathogen with significant levels of seroprevalence<p></p>
-<i>Level 3</i>: Frequent detection illustrating a strong pathogen pressure with a high level of seroprevalence<p></p>
-<select name="wildlifePressure" required id="wildlifePressure">
-    <option value="">Pathogen pressure in wildlife </option>
-	<option value="NA">Don't know</option>
-    <option value="1">Level 1</option>
-    <option value="2">Level 2</option>
-    <option value="3">Level 3</option>
-</select>
-<select name="wildlifePressureTrust" id="wildlifePressureTrust">
-    <option value="">Confidence for wildlife pathogen pressure estimation </option>
-    <option value="1">None</option>
-    <option value="2">Little</option>
-    <option value="3">Moderate</option>
-	<option value="4">High</option>
-    <option value="5">Expert</option>
-</select>
-<p></p>
-<i>Level 1</i>: Low frequency of contact with animal populations that are not located near human populations OR transmission modes are very indirect (i.e., require a bridge host)<p></p>
-<i>Level 2</i>: Moderate frequency of contact with animal populations that can be easily accessible OR transmission modes are direct, but not high (e.g., sustained contact)<p></p>
-<i>Level 3</i>: High frequency of contact with animal populations that are located next to human populations OR highly efficient transmission modes (e.g., aerosols)<p></p>
-<select name="wildlifeContact" id="wildlifeContact">
-    <option value="">Contact with wildlife </option>
-	<option value="NA">Don't know</option>
-    <option value="1">Level 1</option>
-    <option value="2">Level 2</option>
-    <option value="3">Level 3</option>
-</select>
-<select name="wildlifeContactTrust" id="wildlifeContactTrust">
-    <option value="">Confidence for  wildlife contact estimation </option>
-    <option value="1">None</option>
-    <option value="2">Little</option>
-    <option value="3">Moderate</option>
-	<option value="4">High</option>
-    <option value="5">Expert</option>
-</select>
-<p></p>
-<b>Livestock :</b><p></p>
-<i>Level 1</i>: No cases detected currently (may have been detected in the past) or low level of seroprevalence<p></p>
-<i>Level 2</i>: Sporadic detection suggesting a low maintenance of the pathogen with significant levels of seroprevalence<p></p>
-<i>Level 3</i>: Frequent detection illustrating a strong pathogen pressure with a high level of seroprevalence<p></p>
-<select name="livestockPressure" id="livestockPressure">
-    <option value="">Pathogen pressure in livestock </option>
-	<option value="NA">Don't know</option>
-    <option value="1">Level 1</option>
-    <option value="2">Level 2</option>
-    <option value="3">Level 3</option>
-</select>
-<select name="livestockPressureTrust" id="livestockPressureTrust">
-    <option value="">Confidence for livestock pathogen pressure estimation </option>
-    <option value="1">None</option>
-    <option value="2">Little</option>
-    <option value="3">Moderate</option>
-	<option value="4">High</option>
-    <option value="5">Expert</option>
-</select>
-<p></p>
-<i>Level 1</i>: Low frequency of contact with animal populations that are not located near human populations OR transmission modes are very indirect (i.e., require a bridge host)<p></p>
-<i>Level 2</i>: Moderate frequency of contact with animal populations that can be easily accessible OR transmission modes are direct, but not high (e.g., sustained contact)<p></p>
-<i>Level 3</i>: High frequency of contact with animal populations that are located next to human populations OR highly efficient transmission modes (e.g., aerosols)<p></p>
-<select name="livestockContact" id="livestockContact">
-    <option value="">Contact with livestock </option>
-	<option value="NA">Don't know</option>
-    <option value="1">Level 1</option>
-    <option value="2">Level 2</option>
-    <option value="3">Level 3</option>
-</select>
-<select name="livestockContactTrust" id="livestockContactTrust">
-    <option value="">Confidence for livestock contact estimation </option>
-    <option value="1">None</option>
-    <option value="2">Little</option>
-    <option value="3">Moderate</option>
-	<option value="4">High</option>
-    <option value="5">Expert</option>
-</select>
-<p></p>
 
+<label for="wildlifePressure""><u>Pathogen pressure in wildlife</u></label>
+<select name="wildlifePressure" required id="wildlifePressure">
+	<option value="NA">Don't know</option>
+    <option value="1">Level 1</option>
+    <option value="2">Level 2</option>
+    <option value="3">Level 3</option>
+</select>
+<p></p>
+<label for="wildlifePressureTrust""><u>Confidence for wildlife pathogen pressure estimation</u></label>
+<select name="wildlifePressureTrust" id="wildlifePressureTrust">
+    <option value="1">None</option>
+    <option value="2">Little</option>
+    <option value="3">Moderate</option>
+	<option value="4">High</option>
+    <option value="5">Expert</option>
+</select>
+<p></p>
+<i>Level 1</i>: No cases detected currently (may have been detected in the past) or low level of seroprevalence<p></p>
+<i>Level 2</i>: Sporadic detection suggesting a low maintenance of the pathogen with significant levels of seroprevalence<p></p>
+<i>Level 3</i>: Frequent detection illustrating a strong pathogen pressure with a high level of seroprevalence<p></p>
+<label for="wildlifeContact""><u>Contact with wildlife</u></label>
+<select name="wildlifeContact" id="wildlifeContact">
+	<option value="NA">Don't know</option>
+    <option value="1">Level 1</option>
+    <option value="2">Level 2</option>
+    <option value="3">Level 3</option>
+</select>
+<p></p>
+<label for="wildlifeContactTrust""><u>Confidence for  wildlife contact estimation</u></label>
+<select name="wildlifeContactTrust" id="wildlifeContactTrust">
+    <option value="1">None</option>
+    <option value="2">Little</option>
+    <option value="3">Moderate</option>
+	<option value="4">High</option>
+    <option value="5">Expert</option>
+</select>
+<p></p>
+<i>Level 1</i>: Low frequency of contact with animal populations that are not located near human populations OR transmission modes are very indirect (i.e., require a bridge host)<p></p>
+<i>Level 2</i>: Moderate frequency of contact with animal populations that can be easily accessible OR transmission modes are direct, but not high (e.g., sustained contact)<p></p>
+<i>Level 3</i>: High frequency of contact with animal populations that are located next to human populations OR highly efficient transmission modes (e.g., aerosols)<p></p>
+<b>Livestock :</b><p></p>
+<p></p>
+<label for="livestockPressure""><u>Pathogen pressure in livestock</u></label>
+<select name="livestockPressure" id="livestockPressure">
+	<option value="NA">Don't know</option>
+    <option value="1">Level 1</option>
+    <option value="2">Level 2</option>
+    <option value="3">Level 3</option>
+</select>
+<p></p>
+<label for="livestockPressureTrust""><u>Confidence for livestock pathogen pressure estimation</u></label>
+<select name="livestockPressureTrust" id="livestockPressureTrust">
+    <option value="1">None</option>
+    <option value="2">Little</option>
+    <option value="3">Moderate</option>
+	<option value="4">High</option>
+    <option value="5">Expert</option>
+</select>
+<p></p>
+<i>Level 1</i>: No cases detected currently (may have been detected in the past) or low level of seroprevalence<p></p>
+<i>Level 2</i>: Sporadic detection suggesting a low maintenance of the pathogen with significant levels of seroprevalence<p></p>
+<i>Level 3</i>: Frequent detection illustrating a strong pathogen pressure with a high level of seroprevalence<p></p>
+<p></p>
+<label for="livestockContact""><u>Contact with livestock</u></label>
+<select name="livestockContact" id="livestockContact">
+	<option value="NA">Don't know</option>
+    <option value="1">Level 1</option>
+    <option value="2">Level 2</option>
+    <option value="3">Level 3</option>
+</select>
+<p></p>
+<label for="livestockContactTrust""><u>Confidence for livestock contact estimation</u></label>
+<select name="livestockContactTrust" id="livestockContactTrust">
+    <option value="1">None</option>
+    <option value="2">Little</option>
+    <option value="3">Moderate</option>
+	<option value="4">High</option>
+    <option value="5">Expert</option>
+</select>
+<p></p>
+<i>Level 1</i>: Low frequency of contact with animal populations that are not located near human populations OR transmission modes are very indirect (i.e., require a bridge host)<p></p>
+<i>Level 2</i>: Moderate frequency of contact with animal populations that can be easily accessible OR transmission modes are direct, but not high (e.g., sustained contact)<p></p>
+<i>Level 3</i>: High frequency of contact with animal populations that are located next to human populations OR highly efficient transmission modes (e.g., aerosols)<p></p>
 <b>Wildlife/Livestock:</b><p></p>
 
+
+<p></p>
+<label for="wildlifelivestockContact""><u>Contact between wildlife and livestock</u></label>
+<select name="wildlifelivestockContact" id="wildlifelivestockContact">
+	<option value="NA">Don't know</option>
+    <option value="1">Level 1</option>
+    <option value="2">Level 2</option>
+    <option value="3">Level 3</option>
+</select>
+<p></p>
+<label for="livestockWildlifeContactTrust""><u>Confidence for wildlife/livestock contact estimation</u></label>
+<select name="livestockWildlifeContactTrust" id="livestockWildlifeContactTrust">
+    <option value="1">None</option>
+    <option value="2">Little</option>
+    <option value="3">Moderate</option>
+	<option value="4">High</option>
+    <option value="5">Expert</option>
+</select>
+<p></p>
 <i>Level 1</i>: No spatial overlap between wildlife and livestock<p></p>
 <i>Level 2</i>: Small spatial overlap between wildlife and livestock suggesting potentially significant contact between wildlife and livestock <p></p>
 <i>Level 3</i>: Livestock facilities are located in areas with a large wildlife diversity<p></p>
-<select name="wildlifelivestockContact" id="wildlifelivestockContact">
-    <option value="">Contact between wildlife and livestock </option>
-	<option value="NA">Don't know</option>
-    <option value="1">Level 1</option>
-    <option value="2">Level 2</option>
-    <option value="3">Level 3</option>
-</select>
-<select name="livestockWildlifeContactTrust" id="livestockWildlifeContactTrust">
-    <option value="">Confidence for wildlife/livestock contact estimation </option>
-    <option value="1">None</option>
-    <option value="2">Little</option>
-    <option value="3">Moderate</option>
-	<option value="4">High</option>
-    <option value="5">Expert</option>
-</select>
-<p></p>
 Note: <input type="text" name="note" id="note">
 <button id="submit" value="submit">Submit</button>
 </form>
@@ -158,6 +167,17 @@ $('#submit').on('click', function(e) {
 var $form = $('form#test-form'),
     url = 'https://script.google.com/macros/s/AKfycbxKVaSGvgsTNsonRl1nANIK3dqgDNnZNMYA1WSQWZjKUCLnZdMBz0UQ-NuVeeH8m2JBvA/exec'
   e.preventDefault();
+    var inputValue1 = $('#pathogen').val();
+    var inputValue2 = $('#iso3Display').val();
+  
+  if (!inputValue1) {
+    alert("Missing pathogen");
+    return;
+  }
+  if (!inputValue2) {
+    alert("Missing country");
+    return;
+  }
   var jqxhr = $.ajax({
     url: url,
     method: "GET",
@@ -169,6 +189,7 @@ var $form = $('form#test-form'),
   );
   alert("Submitted successfully");
   document.getElementById("test-form").reset();
+  updateValueDisplay('paramDisplay', paramValue);
 })
 </script>
 
@@ -220,7 +241,7 @@ var $form = $('form#test-form'),
     var bounds_group = new L.featureGroup([]);
     function setBounds() {}
     function pop_worldadministrativeboundaries_0(feature, layer) {
-        var iso3Value = feature.properties['iso3'];
+        var iso3Value = feature.properties['name'];
 
         var popupContent = '<table>\
                     <tr>\
